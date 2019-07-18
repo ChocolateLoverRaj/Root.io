@@ -109,7 +109,10 @@
             });
 
             signInButton.onclick = function () {
-                socket.emit('signIn', { username: signInUsername.value, password: signInPassword.value });
+                socket.emit('signIn', { 
+                    username: signInUsername.value, 
+                    password: signInPassword.value 
+                });
             
             socket.on('signInResponse', function (data) {
                 if (data.success) {

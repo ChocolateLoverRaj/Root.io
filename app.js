@@ -114,7 +114,7 @@ var Player = function (id) {
     return self;
 
 
-
+//Sign Up Stuff
 
 };
 var isValidPassword = function (data, cb) {
@@ -140,11 +140,15 @@ var addUser = function (data, cb) {
 }
 var SOCKET_LIST = [];
 
+//socket listeners/emitters
+
 var io = require('socket.io')(serv, {});
 io.sockets.on('connection', function (socket) {
     socket.id = Math.random();
     SOCKET_LIST[socket.id] = socket;
 });
+
+var socket = io();
 
     socket.on('signIn', function (data) {
         isValidPassword(data, function (res) {
@@ -155,7 +159,8 @@ io.sockets.on('connection', function (socket) {
 
             }
 
-        })
+        });
+        console.log('Sign In Request')
     });
 
     socket.on('signUp', function (data) {
