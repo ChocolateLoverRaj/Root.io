@@ -1,0 +1,131 @@
+﻿body {
+    font-family: 'Verdana';
+    color: #e3ffd6;
+    text-align: center;
+    background-color: darkolivegreen;
+    background-image: url("/client/img/vine_texture1.jpg");
+}
+
+button {
+    display: inline-block;
+    border-radius: 6px;
+    background-color: #4CAF50;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    font-family: NSimSun;
+}
+button:hover {
+    display: inline-block;
+    border-radius: 6px;
+    background-color: #e3ffd6;
+    border: none;
+    color: #4CAF50;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    }
+#startButton {
+    width: 200px;
+}
+#startButton:hover {
+        width: 200px;
+}
+.tab {
+    display: inline-block;
+    border-radius: 6px;
+    background-color: #e3ffd6;
+    border: none;
+    color: #4CAF50;
+    text-align: center;
+    font-size: 28px;
+    padding: 15px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+
+}
+.tab:hover {
+    display: inline-block;
+    border-radius: 6px;
+    background-color: #4CAF50;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 15px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    font-family: NSimSun;
+  
+}
+#signDiv {
+    height: 750px;
+    width: 500px;
+    border-radius: 10px;
+    background-color: #e3ffd6;
+    display: none;
+}
+.subSignDiv {
+    color: #4CAF50;
+}
+#signUpDiv {
+    display: none;
+
+}
+.signInput {
+    width: 75%;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: #999999;
+    font-family: 'Lucida Sans Unicode';
+    font-size: 15px;
+
+}
+h2 {
+    font-family: 'Lucida Sans Unicode';
+
+}
+#signInTab {
+    display: inline-block;
+    border-radius: 6px;
+    background-color: #4CAF50;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 15px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    font-family: NSimSun;
+}
+#signUpCheckBoxes {
+    display: inline-block;
+    margin: 0 0 10px 0;
+}
+#emailListP {
+    width: 300px;
+
+}
+#agreeP {
+    width: 300px;
+}
+#errorMessage {
+    font-size: 15px;
+
+}

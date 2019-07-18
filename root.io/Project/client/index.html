@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>root.io</title>
+        <link href="/client/css/StyleSheet.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div id="masterDiv">
+        <div id="startDiv">
+        <h1 id="title">root.io</h1>
+        <p>
+            Thrive as a plant in a dangerous world.
+        </p>
+        <button id="startButton">
+            Start Growing
+        </button>
+        
+        
+        </div>
+        
+        <div id="signDiv">
+            <br />
+            <br />
+            <button id="signInTab" class="tab">Sign In</button> <button id="signUpTab" class="tab">Sign Up</button>
+            <div id="signInDiv" class="subSignDiv">
+                <h2>Sign In</h2>
+                <h4>Username</h4>
+                <input id="signInUsername" class="signInput"/>
+                <h4>Password</h4>
+                <input id="signInPassword" class="signInput" type="password"/>
+                <br />
+                <br />
+                <button id="signInButton">Sign In</button>
+                <div id="errorMessageDiv">
+                    <p id="errorMessage">Press the button to sign up!</p>
+                </div>
+            </div>
+            <div id="signUpDiv" class="subSignDiv">
+                <h2>Sign Up</h2>
+                <h4>Email</h4>
+                <input id="signUpEmail" class="signInput"/>
+                <h4>Username</h4>
+                <input id="signUpUsername" class="signInput"/>
+                <h4>Password</h4>
+                <input id="signUpPassword" class="signInput" type="password"/>
+                <br />
+                <br />
+                <button id="signUpButton">Sign Up</button>
+                <br />
+                <div id="signUpCheckBoxes">
+                    <input type="checkbox" id="emailListCheck" class="checkBox" checked /><p id="emailListP">Sign up for our email list to be notified about news and updates</p>
+                    <input type="checkbox" id="agreeCheck" class="checkBox" /><p id="agreeP">I agree to <i>root.io</i> terms and conditions.</p>
+                </div>
+
+                </div>
+
+
+        </div>
+        </div>
+                         
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+        <script>
+            var socket = io();
+
+            var startButton = document.getElementById('startButton');
+            var startDiv = document.getElementById('startDiv');
+            var masterDiv = document.getElementById('masterDiv');
+            var signDiv = document.getElementById('signDiv');
+            var tab = document.getElementsByClassName('tab');
+            var subSignDiv = document.getElementsByClassName('subSignDiv');
+            var signInButton = document.getElementById('signInButton');
+            var signUpButton = document.getElementById('signUpButton');
+            var signInUsername = document.getElementById('signInUsername');
+            var signUpUsername = document.getElementById('signUpUsername');
+            var signInPassword = document.getElementById('signInPassword');
+            var signUpPassword = document.getElementById('signUpPassword');
+            var signUpEmail = document.getElementById('signUpEmail');
+            var errorMessageDiv = document.getElementById('errorMessageDiv');
+            var errorMessage = document.getElementById('errorMessage');
+
+
+            //sign in pop-up
+            startButton.addEventListener('click', function(){
+                startDiv.style.display = 'none';
+                signDiv.style.display = 'inline-block';
+
+            })
+
+            var clickOnTab = function(buttonId, otherButtonId, divId, otherDivId) {
+                document.getElementById(buttonId).style.background = '#4CAF50';
+                document.getElementById(buttonId).style.color = '#e3ffd6';
+                console.log(document.getElementById(buttonId));
+                document.getElementById(otherButtonId).style.background = '#e3ffd6';
+                document.getElementById(otherButtonId).style.color = '#4CAF50';
+                console.log(document.getElementById(otherButtonId));
+                document.getElementById(divId).style.display = 'block';
+                document.getElementById(otherDivId).style.display = 'none';
+                if(buttonId === 'signUpButton'){
+                    signDiv.style.height = 1000;
+                }
+            }
+     
+
+            document.getElementById('signInTab').addEventListener('click', function(){
+                clickOnTab('signInTab','signUpTab','signInDiv','signUpDiv');
+            });
+            document.getElementById('signUpTab').addEventListener('click', function(){
+                clickOnTab('signUpTab','signInTab','signUpDiv','signInDiv');
+            });
+
+            signInButton.onclick = function () {
+                socket.emit('signIn', { username: signInUsername.value, password: signInPassword.value });
+            
+            socket.on('signInResponse', function (data) {
+                if (data.success) {
+                    signDiv.style.display = 'none';
+                    startDiv.style.display = 'none';
+                } else
+                    errorMessage.innerHTML = 'Sorry! Your username and/or password is incorrect. Try again or Sign Up using the button above.'
+
+            })
+                };
+
+            signUpButton.onclick = function () {
+                socket.emit('signUp', { username: signUpUsername.value, password: signUpPassword.value, email: signUpEmail.value });
+            
+            socket.on('signUpResponse', function (data) {
+                if (data.success) {
+                    signDiv.style.display = 'none';
+                    startDiv.style.display = 'none';
+                } else
+                    errorMessage.innerHTML = 'Sorry! Your username is taken. Try another username.'
+
+            })
+                };
+            
+
+        </script>
+    </body>
+</html>
